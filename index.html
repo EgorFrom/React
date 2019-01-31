@@ -15,13 +15,23 @@
     <script type="text/babel">
       class Block extends React.Component {
           render() {
-              return ( <h3>Egorka</h3> ); 
+          const num = 20;
+              return ( 
+              <div>
+              <h3>Egorka. {num} years old.</h3>
+              <p>Это абзац</p>
+              </div>
+               ); 
           }
       }
-
+      const place = document.getElementById("example");
       ReactDOM.render (
-        <Block />
-      , document.getElementById("example"));
+        <div>
+          <Block />
+          <Block />
+          <Block />
+        </div>
+      , place);
     </script>
     
   </body>
