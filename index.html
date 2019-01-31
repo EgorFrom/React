@@ -24,12 +24,24 @@
                ); 
           }
       }
+
+      class Game extends React.Component {
+        render() {
+          return (
+            <div>
+              <h1>{this.props.name}</h1>
+              <h2>{this.props.age}</h2>
+            </div>
+          );
+        }
+      }
+
       const place = document.getElementById("example");
       ReactDOM.render (
         <div>
-          <Block />
-          <Block />
-          <Block />
+          <Game name="Perfect World" age="16+"/>
+          <Game name="Point Blank" age="16+"/>
+          <Game name="PUBG" age="18+"/>
         </div>
       , place);
     </script>
