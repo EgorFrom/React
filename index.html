@@ -7,41 +7,38 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     
     <div id="example"></div>
     
     <script type="text/babel">
-      class Block extends React.Component {
-          render() {
-          const num = 20;
-              return ( 
-              <div>
-              <h3>Egorka. {num} years old.</h3>
-              <p>Это абзац</p>
-              </div>
-               ); 
-          }
-      }
-
-      class Game extends React.Component {
+      class Task extends React.Component {
+        edit () {
+          alert("нажата кнопка редактировать");
+        };
+        remove () {
+          alert("нажата кнопка удалить");
+        };
         render() {
-          return (
-            <div>
-              <h1>{this.props.name}</h1>
-              <h2>{this.props.age}</h2>
-            </div>
-          );
+            return ( 
+              <div className="box">
+                <div className="text">{this.props.children}</div>
+                <button className="btn light" onClick={this.edit}>Редактировать</button>
+                <button className="btn red" onClick={this.remove}>Удалить</button>
+              </div>
+             ); 
         }
       }
 
+
       const place = document.getElementById("example");
       ReactDOM.render (
-        <div>
-          <Game name="Perfect World" age="16+"/>
-          <Game name="Point Blank" age="16+"/>
-          <Game name="PUBG" age="18+"/>
+        <div className="field">
+          <Task>Теги, текст и т.п.</Task>
+          <Task>Теги, текст и т.д.</Task>
+          <Task>Теги, текст...</Task>
         </div>
       , place);
     </script>
