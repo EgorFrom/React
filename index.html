@@ -78,13 +78,20 @@
           var arr = this.state.tasks;
           arr[i] = text;
           this.setState ({tasks: arr});
-        }
+        };
         eachTask = (item, i) => {
           return (<Task key={i} index={i} update={this.updateText} deleteBlock={this.deleteBlock}>{item}</Task>);
         };
+        add = (text) => {
+          var arr = this.state.tasks;
+          arr.push(text);
+          this.setState ({tasks: arr});
+        };
         render () {
+          var s = 'Простое задание';
           return (
             <div className="field">
+              <button class="btn new-task" onClick={this.add.bind(null,s)}>Новое задание</button>
               {
                 this.state.tasks.map (this.eachTask)
               }
