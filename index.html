@@ -25,11 +25,11 @@
           this.setState ({edit: true});
         };
         remove = () => {
-          alert("нажата кнопка удалить");
+          this.props.deleteBlock (this.props.index);
         };
         save = () => {
           var value = this.refs.newText.value;
-          alert(value);
+          this.props.update (value, this.props.index);
           this.setState ({edit: false});
         };
         rendNorm = () => {
@@ -80,7 +80,7 @@
           this.setState ({tasks: arr});
         }
         eachTask = (item, i) => {
-          return (<Task key={i} index={i}>{item}</Task>);
+          return (<Task key={i} index={i} update={this.updateText} deleteBlock={this.deleteBlock}>{item}</Task>);
         };
         render () {
           return (
