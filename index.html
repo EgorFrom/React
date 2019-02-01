@@ -15,20 +15,44 @@
     
     <script type="text/babel">
       class Task extends React.Component {
-        edit () {
-          alert("нажата кнопка редактировать");
+        constructor(props) {
+          super(props);
+          this.state = {
+            edit: false,
+          };
         };
-        remove () {
+        edit = () => {
+          this.setState ({edit: true});
+        };
+        remove = () => {
           alert("нажата кнопка удалить");
         };
+        save = () => {
+          this.setState ({edit: false});
+        };
+        rendNorm = () => {
+          return ( 
+            <div className="box">
+              <div className="text">{this.props.children}</div>
+              <button className="btn light" onClick={this.edit}>Редактировать</button>
+              <button className="btn red" onClick={this.remove}>Удалить</button>
+            </div>
+           );
+        };
+        rendEdit = () => {
+          return ( 
+            <div className="box">
+              <textarea defaultValue={this.props.children}></textarea>
+              <button className="btn success" onClick={this.save}>Сохранить</button>
+            </div>
+           );
+        };
         render() {
-            return ( 
-              <div className="box">
-                <div className="text">{this.props.children}</div>
-                <button className="btn light" onClick={this.edit}>Редактировать</button>
-                <button className="btn red" onClick={this.remove}>Удалить</button>
-              </div>
-             ); 
+          if (this.state.edit){
+            return this.rendEdit();
+          } else {
+            return this.rendNorm();
+          }
         }
       }
 
