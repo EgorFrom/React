@@ -28,6 +28,8 @@
           alert("нажата кнопка удалить");
         };
         save = () => {
+          var value = this.refs.newText.value;
+          alert(value);
           this.setState ({edit: false});
         };
         rendNorm = () => {
@@ -42,7 +44,7 @@
         rendEdit = () => {
           return ( 
             <div className="box">
-              <textarea defaultValue={this.props.children}></textarea>
+              <textarea ref="newText" defaultValue={this.props.children}></textarea>
               <button className="btn success" onClick={this.save}>Сохранить</button>
             </div>
            );
@@ -55,16 +57,34 @@
           }
         }
       }
+      
+      class Field extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            tasks: [
+                    'Необходимо купить молоко!',
+                    'Надо почистить зубы',
+                    'Просто отдохнуть'
+                  ]
+          };
+        };
 
+        render () {
+          return (
+            <div className="field">
+              {
+                this.state.tasks.map (function (item, i) {
+                  return (<Task key={i}>{item}</Task>);
+                })
+              }
+            </div>
+          );
+        }
+      }
 
       const place = document.getElementById("example");
-      ReactDOM.render (
-        <div className="field">
-          <Task>Теги, текст и т.п.</Task>
-          <Task>Теги, текст и т.д.</Task>
-          <Task>Теги, текст...</Task>
-        </div>
-      , place);
+      ReactDOM.render ( <Field />, place);
     </script>
     
   </body>
