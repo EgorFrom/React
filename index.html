@@ -14,31 +14,36 @@
     <div id="example"></div>
     
     <script type="text/babel">
-      class Task extends React.Component {
-        edit () {
-          alert("нажата кнопка редактировать");
+      class Check extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            checked: true,
+          };
         };
-        remove () {
-          alert("нажата кнопка удалить");
+        handleCheck = () => {
+          this.setState({checked: !this.state.checked});
         };
         render() {
-            return ( 
-              <div className="box">
-                <div className="text">{this.props.children}</div>
-                <button className="btn light" onClick={this.edit}>Редактировать</button>
-                <button className="btn red" onClick={this.remove}>Удалить</button>
-              </div>
-             ); 
+          var message;
+          if (this.state.checked) { //state - состояние (чек/нечек)
+            message = 'выбран';
+          } else {
+            message = 'не выбран';
+          }
+          return (
+            <div>
+              <input type="checkbox" onChange={this.handleCheck} defaultChecked={this.state.checked} />
+              <p>Чекбокс {message}</p>
+            </div>
+          );
         }
       }
-
 
       const place = document.getElementById("example");
       ReactDOM.render (
         <div className="field">
-          <Task>Теги, текст и т.п.</Task>
-          <Task>Теги, текст и т.д.</Task>
-          <Task>Теги, текст...</Task>
+          <Check />
         </div>
       , place);
     </script>
